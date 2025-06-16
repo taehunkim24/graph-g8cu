@@ -1,0 +1,9 @@
+# build artefacts
+build/
+*.o
+*.a
+# datasets
+*.edges
+*.txt
+# googletest binaries
+FastPFor/build/
