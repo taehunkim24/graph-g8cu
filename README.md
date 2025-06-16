@@ -22,7 +22,7 @@ sudo apt update && sudo apt install -y build-essential python3-venv \
 ```bash
 graph_G8CU/   
 ├─ src/   
-│  ├─ varint_g8cu_sse.cpp   # SSE-only decoder   
+│  ├─ varint_g8cu.cpp  
 │  ├─ varint_g8cu.h   
 │  └─ …   
 ├─ scripts/   
@@ -53,7 +53,7 @@ python scripts/prep_graph.py --name youtube
 ```bash
 mkdir -p build
 g++ -O3 -std=c++17 -fPIC -msse4.1 -I src \
-    src/varint_g8cu_sse.cpp \
+    src/varint_g8cu.cpp \
     -shared -o build/libg8cu.so
 
 export LD_LIBRARY_PATH=$PWD/build:$LD_LIBRARY_PATH
