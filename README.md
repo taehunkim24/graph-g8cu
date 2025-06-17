@@ -78,7 +78,7 @@ python scripts/benchmark_baseline.py --codec g8cu
 ```
 
 ## 7 Example Results
-| Graph       | streamvbyte<br>enc / dec MB/s | g8cu<br>enc / dec MB/s | bpe *(both)* |
+| Graph       | streamvbyte<br>enc / dec      | g8cu<br>enc / dec      | bpe *(both)* |
 | ----------- | ----------------------------- | ---------------------- | ------------ |
 | dblp        | 2.6 / 2.9 GB/s                | **6.1 / 3.0 GB/s**     | 10.00        |
 | google      | 3.4 / 4.2 GB/s                | **6.7 / 5.2 GB/s**     | 10.00        |
