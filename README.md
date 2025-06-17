@@ -40,7 +40,7 @@ pip install -U pip
 pip install numpy pandas pyfastpfor==1.4.0   # streamvbyte (SSE) inside
 ```
 
-## 4 Prepare Graph Data
+## 4 Prepare Graph Data (Already done for you; see data folder)
 Generate Δ-gap arrays (takes a few minutes each).
 ```bash
 python scripts/prep_graph.py --name dblp
@@ -80,15 +80,15 @@ python scripts/benchmark_baseline.py --codec g8cu
 ## 7 Example Results
 | Graph       | streamvbyte<br>enc / dec MB/s | g8cu<br>enc / dec MB/s | bpe *(both)* |
 | ----------- | ----------------------------- | ---------------------- | ------------ |
-| dblp        | 1.6 / 1.7 GB/s                | **3.4 / 2.0 GB/s**     | 10.00        |
-| google      | 4.1 / 3.3 GB/s                | **3.3 / 1.9 GB/s**     | 10.00        |
-| livejournal | 2.7 / 3.2 GB/s                | **2.8 / 2.9 GB/s**     | 10.02        |
-| youtube     | 4.4 / 8.6 GB/s                | **2.3 / 2.9 GB/s**     | 10.01        |
+| dblp        | 2.6 / 2.9 GB/s                | **6.1 / 3.0 GB/s**     | 10.00        |
+| google      | 3.4 / 4.2 GB/s                | **6.7 / 5.2 GB/s**     | 10.00        |
+| livejournal | 3.6 / 6.5 GB/s                | **5.1 / 7.1 GB/s**     | 10.02        |
+| youtube     | 3.9 / 4.1 GB/s                | **5.6 / 9.3 GB/s**     | 10.01        |
 g8cu encoder is up to 2× faster on some graphs; decoder is slower or similar.
 
 Compression ratio identical (≈10 bits per edge).
 
 
 ## 8 Conclusion
-With SSE-level SIMD only, g8cu offers higher encode throughput on 2 of 4 graphs but no space savings versus streamvbyte.
-Further AVX2 experiments were dropped—time cost outweighed benefit for this project.
+With SSE-level SIMD only, g8cu offers higher encode throughput on every graphs but showed no space savings versus streamvbyte.
+This is due to the skewed distribution of edge in the dataset. Using G8CU to a graph with a lot of large-valued edge will show lower bpe than that of streamvbyte.

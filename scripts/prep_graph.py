@@ -19,13 +19,13 @@ DATA_DIR = pathlib.Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 
 URLS = {
-    "youtube"     : "https://snap.stanford.edu/data/bigdata/youtube.gz",
-    "dblp"        : "https://snap.stanford.edu/data/bigdata/dblp.gz",
-    "livejournal" : "https://snap.stanford.edu/data/bigdata/livejournal.txt.gz",
+    "youtube"     : "https://snap.stanford.edu/data/bigdata/communities/com-youtube.ungraph.txt.gz",
+    "dblp"        : "https://snap.stanford.edu/data/bigdata/communities/com-dblp.ungraph.txt.gz", 
+    "livejournal" : "https://snap.stanford.edu/data/soc-LiveJournal1.txt.gz",
     "soc-pokec"   : "https://snap.stanford.edu/data/soc-pokec-relationships.txt.gz",
     "twitter"     : "https://snap.stanford.edu/data/twitter-2010.txt.gz",
     "google"      : "https://snap.stanford.edu/data/web-Google.txt.gz",
-    # uk2002 는 --raw 로 직접 넣는 것을 권장
+    # uk2002
 }
 
 def download(url: str, out: pathlib.Path):
@@ -74,6 +74,7 @@ def edgelist_to_csr(txt: pathlib.Path):
 
 def to_dgap(indptr: np.ndarray, dst: np.ndarray):
     print("[dgap] computing…")
+    dst = dst.astype(np.uint32, copy=False)
     out = np.empty_like(dst, dtype=np.uint32)
     for u in range(len(indptr)-1):
         beg, end = indptr[u], indptr[u+1]

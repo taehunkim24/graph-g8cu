@@ -89,3 +89,18 @@ size_t decode32(const uint8_t *in, uint32_t *out, size_t n) {
 }
 
 } // namespace g8cu
+
+/*──────── C-symbol wrappers — required by benchmark script ─────*/
+extern "C" {
+
+    size_t G8CU_encodeArray32(const uint32_t* in, size_t n, uint8_t* out)
+    {
+        return g8cu::encode32(in, n, out);
+    }
+    
+    size_t G8CU_decodeArray32(const uint8_t* in, uint32_t* out, size_t n)
+    {
+        return g8cu::decode32(in, out, n);
+    }
+    
+    } // extern "C"

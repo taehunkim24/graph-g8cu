@@ -7,4 +7,3 @@ build/
 *.txt
 # googletest binaries
 FastPFor/build/
-tests/
