@@ -37,7 +37,7 @@ graph_G8CU/
 python3 -m venv venv
 source venv/bin/activate
 pip install -U pip
-pip install numpy pandas pyfastpfor==0.4.1   # streamvbyte (SSE) inside
+pip install numpy pandas pyfastpfor==1.4.0   # streamvbyte (SSE) inside
 ```
 
 ## 4 Prepare Graph Data
